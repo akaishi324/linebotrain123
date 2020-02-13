@@ -1,0 +1,2 @@
+module LinebotrainHelper
+end
