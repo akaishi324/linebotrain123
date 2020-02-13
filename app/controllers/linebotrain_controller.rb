@@ -1,5 +1,10 @@
 class LinebotrainController < ApplicationController
     require 'line/bot'
+    API_KEY = "YOUR API KEY"
+   BASE_URL = "http://api.openweathermap.org/data/2.5/forecast"
+
+   require "json"
+   require "open-uri"
   def client
     @client ||= Line::Bot::Client.new { |config|
       config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
@@ -25,14 +30,9 @@ class LinebotrainController < ApplicationController
 
         case event.message['text']
         when 'スタート'
-           response = "んほぉぉぉぉぉぉ！すきすきすきすきすきすきすきすきぃぃぃぃぃ"
+           respon = open(BASE_URL + "?q=Akashi-shi,jp&APPID=#{API_KEY}")
           # 「スタート」と入力されたときの処理
-        when 'ストップ'
-            
-          # 「ストップ」と入力されたときの処理
-        when /.*天気.*/
-          # 「天気」を含む文字列が入力されたときの処理
-
+        response=JSON.pretty_generate(JSON.parse(respon.read))
         end
    　  end
       message = { type: 'text', text: response}
