@@ -30,9 +30,7 @@ class LinebotrainController < ApplicationController
 
         case event.message['text']
         when 'スタート'
-           respon = open(BASE_URL + "?q=Akashi-shi,jp&APPID=#{cbba055e76890cc19833783ff9b63ba7}")
-          # 「スタート」と入力されたときの処理
-        response=JSON.pretty_generate(JSON.parse(respon.read))
+          response='22222222222'
         end
    　  end
       message = { type: 'text', text: response}
